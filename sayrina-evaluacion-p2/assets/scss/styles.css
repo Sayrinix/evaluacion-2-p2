@@ -11980,6 +11980,13 @@ h1, .h1 {
   color: rebeccapurple;
 }
 
+h2, .h2 {
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  color: rebeccapurple;
+}
+
 .altura {
   height: 500px;
   width: 500px;
