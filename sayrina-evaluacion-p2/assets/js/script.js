@@ -1,36 +1,73 @@
 //Alerta
-
-const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
-const appendAlert = (message) => {
-  const wrapper = document.createElement('div')
-  wrapper.innerHTML = [
-    `<div class="alert alert-primary alert-dismissible" role="alert">`,
-    `   <div>${message}</div>`,
-    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-    '</div>'
-  ].join('')
-
-  alertPlaceholder.append(wrapper)
+function cambiarTitulo(){
+  let valorTitulo = document.getElementById('titulo').value
+  let valorDescripcion = document.getElementById('descripcion').value
+  let alertaT = document.getElementById('alertTitulo')
+  let alertaD = document.getElementById('alertDescripcion')
+  alertaT.textContent = valorTitulo
+  alertaD.textContent = valorDescripcion
+  
+}
+function mostrarAlerta(){
+  let alerta = document.getElementById('miAlerta');
+  alerta.classList.remove('d-none');
+  alerta.classList.add('d-block');
+  let boton = document.getElementById('botonAlerta')
+  boton.addEventListener('click', cambiarTitulo)
 }
 
-let xd = document.getElementById('cambiar').addEventListener('click',function(){
-    let inputTitulo = document.getElementById('titulo').value
-    let botonAlert = document.getElementById('liveAlertBtn').setAttribute('data-titulo',inputTitulo)
-    appendAlert(botonAlert)
-});
 
-const alertTrigger = document.getElementById('liveAlertBtn')
-if (alertTrigger) {
-  alertTrigger.addEventListener('click', (event) => {
-    appendAlert(xd)
-    let boton = event.relatedTarget
-    let botonAlert = boton.getAttribute('data-titulo') 
-  })
+
+//Popover
+
+//  JS bootstrap
+const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
+function modificarPopover() {
+  
+  let valorTitulo = document.getElementById('titulo').value
+  let boton = document.getElementById('botonPop')
+  let valorContenido = document.getElementById('descripcion').value
+
+  boton.setAttribute('data-bs-content', valorContenido)
+  boton.setAttribute('data-bs-title', valorTitulo)
+  //Para modificar la instancia
+  let popover = bootstrap.Popover.getInstance(boton)
+            if (popover) {
+                popover.dispose();
+            }
+            new bootstrap.Popover(boton);
+        }
+
+//Toast 
+
+function modificarToast(){
+  let valorTitulo = document.getElementById('titulo').value
+  let valorContenido = document.getElementById('descripcion').value
+  let tituloToast = document.getElementById('toastTitulo')
+  let contenidoToast = document.getElementById('toastCuerpo')
+  tituloToast.textContent = valorTitulo
+  contenidoToast.textContent = valorContenido
 }
 
-//if(titulo == ''){
-    //document.querySelector('.alert').innerHTML = ''
-//} else {
-    //document.querySelector('.alert').innerHTML = appendAlert(titulo)
-//}
+function mostrarToast(){
 
+  modificarToast();
+
+  let miToast = new bootstrap.Toast(document.getElementById('liveToast'));
+  miToast.show();
+}
+
+//Offcanvas
+
+function modificarOffcanvas(){
+  let valorTitulo = document.getElementById('titulo').value
+  let valorContenido = document.getElementById('descripcion').value
+
+  let titulo = document.getElementById('tituloCanvas')
+  let cuerpo = document.getElementById('cuerpoCanvas')
+
+  titulo.textContent = valorTitulo 
+  cuerpo.textContent = valorContenido
+}

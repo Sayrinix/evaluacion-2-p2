@@ -11990,4 +11990,6 @@ h2, .h2 {
 .altura {
   height: 500px;
   width: 500px;
+  background-color: rgba(72, 61, 139, 0.5);
+  border: 3px solid rebeccapurple;
 }/*# sourceMappingURL=styles.css.map */
